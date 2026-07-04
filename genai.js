@@ -16,3 +16,48 @@ for (let i = 0; i < socialIconButtons.length; i++) {
         postToSocialMedia(socialIconButtons[i].classList)
     );
 }
+
+// --- Rotating "fortune --dev" typewriter quotes ---
+const devQuotes = [
+    "Talk is cheap. Show me the code. — Linus Torvalds",
+    "Code is like humor. When you explain it, it's bad. — Cory House",
+    "First, solve the problem. Then, write the code. — John Johnson",
+    "Make it work, make it right, make it fast. — Kent Beck",
+    "The best error message is the one that never shows up. — Thomas Fuchs"
+];
+
+const quoteEl = document.getElementById("devQuote");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (quoteEl) {
+    if (prefersReducedMotion) {
+        quoteEl.textContent = devQuotes[0];
+    } else {
+        let qIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeLoop() {
+            const current = devQuotes[qIndex];
+            if (!deleting) {
+                charIndex++;
+                quoteEl.textContent = current.slice(0, charIndex);
+                if (charIndex === current.length) {
+                    deleting = true;
+                    setTimeout(typeLoop, 1800);
+                    return;
+                }
+            } else {
+                charIndex--;
+                quoteEl.textContent = current.slice(0, charIndex);
+                if (charIndex === 0) {
+                    deleting = false;
+                    qIndex = (qIndex + 1) % devQuotes.length;
+                }
+            }
+            setTimeout(typeLoop, deleting ? 30 : 45);
+        }
+
+        typeLoop();
+    }
+}
