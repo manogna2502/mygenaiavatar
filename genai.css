@@ -6,6 +6,9 @@
     --border: #1c2b26;
     --amber: #ffb400;
     --cyan: #4dfff0;
+    --magenta: #ff6bcb;
+    --violet: #9d7bff;
+    --comment: #6a9955;
     --text: #cfe0d8;
     --dim: #5f7269;
     --red: #ff5f56;
@@ -34,7 +37,6 @@ body {
     outline-offset: 2px;
 }
 
-/* CRT scanline overlay */
 .crt-overlay {
     position: fixed;
     inset: 0;
@@ -54,7 +56,7 @@ body {
     border: 1px solid var(--border);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 40px rgba(77, 255, 240, 0.06);
+    box-shadow: 0 0 40px rgba(157, 123, 255, 0.08);
 }
 
 .window-titlebar {
@@ -92,37 +94,43 @@ body {
     box-sizing: border-box;
 }
 
-.pane-label {
-    color: var(--dim);
-    font-size: 13px;
-    margin: 0 0 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px dashed var(--border);
-}
-
-.pane-label:not(:first-child) {
-    margin-top: 36px;
-}
-
 .description-container {
     width: 60%;
     padding: 40px 32px;
     border-right: 1px solid var(--border);
 }
 
+.prompt-line {
+    color: var(--dim);
+    font-size: 13px;
+    margin: 0 0 32px;
+    letter-spacing: 0.3px;
+}
+
+.prompt-symbol {
+    color: var(--cyan);
+    margin-right: 8px;
+}
+
+.hl-comment {
+    color: var(--comment);
+}
+
 .profile-section {
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-bottom: 40px;
 }
 
 .profile-pic-container {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: 0 0 16px rgba(255, 180, 0, 0.25);
+    flex-shrink: 0;
 }
 
 .student-pic {
@@ -134,24 +142,24 @@ body {
 
 .name {
     margin: 0;
-    color: var(--text);
-    font-size: 22px;
+    color: var(--cyan);
+    font-size: 21px;
     font-weight: 700;
 }
 
 .bot-extra-info {
     margin: 4px 0 0;
     color: var(--dim);
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .heading {
-    font-size: 56px;
+    font-size: 54px;
     font-weight: 800;
     color: var(--amber);
     letter-spacing: -1px;
     line-height: 1.05;
-    margin: 0 0 18px;
+    margin: 0 0 16px;
     text-shadow: 0 0 8px rgba(255, 180, 0, 0.5), 0 0 24px rgba(255, 180, 0, 0.2);
     word-break: break-word;
 }
@@ -159,7 +167,7 @@ body {
 .cursor {
     display: inline-block;
     animation: blink 1s steps(1) infinite;
-    color: var(--cyan);
+    color: var(--violet);
 }
 
 @keyframes blink {
@@ -168,32 +176,48 @@ body {
 }
 
 .description {
-    margin: 0;
+    margin: 0 0 36px;
     font-size: 15px;
     line-height: 1.6;
     color: var(--text);
     max-width: 560px;
 }
 
+.share-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.share-label {
+    color: var(--violet);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
 .icons-container {
     display: flex;
-    gap: 12px;
+    gap: 10px;
 }
 
 .social-icon {
-    background: transparent;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid var(--border);
+    border-radius: 6px;
     color: var(--cyan);
-    font-size: 14px;
-    padding: 8px 14px;
-    border-radius: 4px;
     cursor: pointer;
     transition: all 0.15s ease;
 }
 
 .social-icon:hover {
-    border-color: var(--cyan);
-    box-shadow: 0 0 12px rgba(77, 255, 240, 0.35);
+    color: var(--magenta);
+    border-color: var(--magenta);
+    box-shadow: 0 0 12px rgba(255, 107, 203, 0.4);
 }
 
 .chat-bot-container {
@@ -202,6 +226,12 @@ body {
     padding: 40px 32px;
     display: flex;
     flex-direction: column;
+}
+
+.pane-label {
+    color: var(--dim);
+    font-size: 13px;
+    margin: 0 0 12px;
 }
 
 .chat-pane-label {
